@@ -36,5 +36,11 @@ namespace SimpleCalculator
             button2.Text = "2";
             button3.Text = "3";
         }
+
+        private void Button_Click(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            Display.Text += button.Text;
+        }
     }
 }
