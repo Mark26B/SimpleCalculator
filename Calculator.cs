@@ -50,7 +50,7 @@ namespace SimpleCalculator
 
         private void buttonDecimal_Click(object sender, EventArgs e)
         {
-            if(!Display.Text.Contains("."))
+            if(!Display.Text.Contains(","))
             {
                 if (Display.Text == string.Empty)
                 {
@@ -58,7 +58,7 @@ namespace SimpleCalculator
                 }
                 else
                 {
-                    Display.Text += ".";
+                    Display.Text += ",";
                 }
             }
         }
@@ -79,7 +79,16 @@ namespace SimpleCalculator
 
         private void buttonSign_Click(object sender, EventArgs e)
         {
-            
+            try
+            {
+                double number = Convert.ToDouble(Display.Text);
+                number *= -1;
+                Display.Text = Convert.ToString(number);
+            }
+            catch
+            {
+
+            }
         }
     }
 }
