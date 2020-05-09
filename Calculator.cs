@@ -21,26 +21,65 @@ namespace SimpleCalculator
         private void InitializeCalculator()
         {
             this.BackColor = Color.Black;
+            Display.Font = new Font("Roboto", 24f);
+            Display.TabStop = false;
 
             string buttonName = null;
             Button button = null;
-            for(int i = 0; i < 10; i++)
+            for (int i = 0; i < 10; i++)
             {
                 buttonName = "button" + i;
                 button = (Button)this.Controls[buttonName];
                 button.Text = i.ToString();
+                button.Font = new Font("Roboto", 20f);
             }
-
-            button0.Text = "0";
-            button1.Text = "1";
-            button2.Text = "2";
-            button3.Text = "3";
         }
 
         private void Button_Click(object sender, EventArgs e)
         {
             Button button = (Button)sender;
-            Display.Text += button.Text;
+            if (Display.Text == "0")
+            {
+                Display.Text = button.Text;
+            }
+            else
+            {
+                Display.Text += button.Text;
+            }
+        }
+
+        private void buttonDecimal_Click(object sender, EventArgs e)
+        {
+            if(!Display.Text.Contains("."))
+            {
+                if (Display.Text == string.Empty)
+                {
+                    Display.Text += "0";
+                }
+                else
+                {
+                    Display.Text += ".";
+                }
+            }
+        }
+
+        private void buttonBackspace_Click(object sender, EventArgs e)
+        {
+            string s = Display.Text;
+            if (s.Length > 0)
+            {
+                s = s.Substring(0, s.Length - 1);
+            }
+            else
+            {
+                s = "0";
+            }
+            Display.Text = s;
+        }
+
+        private void buttonSign_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
